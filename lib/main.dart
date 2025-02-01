@@ -268,8 +268,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            _buildDisplay(isCalculated ? input : "", Color(0xff8D8C91)),
-            _buildDisplay(isCalculated ? output : input, Colors.white),
+            _buildDisplay(isCalculated ? input : "", Color(0xff8D8C91), 32.0),
+            _buildDisplay(isCalculated ? output : input, Colors.white, 52.0),
             _buildButtons(),
           ],
         ),
@@ -277,7 +277,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     );
   }
 
-  Widget _buildDisplay(String text, Color color) {
+  Widget _buildDisplay(String text, Color color, double fontSize) {
     return Expanded(
       flex: 3,
       child: Align(
@@ -287,7 +287,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
           child: Text(
             text,
             style: TextStyle(
-                fontSize: 52.0, color: color, fontWeight: FontWeight.w500),
+                fontSize: fontSize, color: color, fontWeight: FontWeight.w500),
           ),
         ),
       ),
