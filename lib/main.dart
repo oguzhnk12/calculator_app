@@ -190,13 +190,25 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     setState(() {
       if (!isCalculated) {
         // Eğer hesaplama tamamlanmadıysa
-        if ("+-×÷%0".contains(input[input.length - 1])) {
+        if ("+-×÷%".contains(input[input.length - 1]) || input == "0") {
           return; // Eğer input son karakteri geçerli bir işlem operatörü veya "0" ise işlemi durdur
         }
 
         List<String> parts = input.split(RegExp(
             r"[\+\-\×\÷\%]")); // Inputu işlem operatörlerine göre böl ve parçaları listeye ata
         String lastPart = parts.last; // Listenin son parçasını al
+
+        if (parts.length == 1) {
+          // Eğer input sadece bir parçadan oluşuyorsa
+          if (input.startsWith("-")) {
+            // Eğer input "-" ile başlıyorsa
+            input = input.substring(1); // "-" işaretini kaldır
+          } else {
+            // Diğer durumlarda
+            input = "(-$input)"; // "-" işaretini ekle
+          }
+          return;
+        }
 
         if (input.endsWith(")")) {
           // Eğer input ")" ile bitiyorsa
@@ -296,7 +308,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 onPressed: () => _handleButtonPress(key),
                 value: key,
                 icon: key == "clear" && isCalculated
-                    ? Icon(Icons.undo, size: 38.0, color: Colors.white)
+                    ? Text("AC",
+                        style: TextStyle(
+                          fontSize: 38.0,
+                          fontWeight: FontWeight.w500,
+                        ))
                     : buttons[key],
               );
             }),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CalculatorButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String value;
-  final Icon? icon;
+  final Widget? icon;
   const CalculatorButton({
     super.key,
     required this.onPressed,
