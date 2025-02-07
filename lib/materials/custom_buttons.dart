@@ -6,11 +6,16 @@ class CalculatorButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String value;
   final Widget? icon;
+  final Size buttonSize;
+  final double fontSize;
+
   const CalculatorButton({
     super.key,
     required this.onPressed,
     required this.value,
     this.icon,
+    required this.buttonSize,
+    required this.fontSize,
   });
 
   @override
@@ -31,12 +36,12 @@ class CalculatorButton extends StatelessWidget {
         child: icon ??
             Text(value,
                 style: TextStyle(
-                  fontSize: 48.0,
+                  fontSize: fontSize,
                   fontWeight: FontWeight.w500,
                 )),
       ),
       style: TextButton.styleFrom(
-        maximumSize: Size(95.6, 105.6),
+        maximumSize: buttonSize,
         shape: CircleBorder(),
         backgroundColor: getBackgroundColor(),
         foregroundColor: Colors.white,
