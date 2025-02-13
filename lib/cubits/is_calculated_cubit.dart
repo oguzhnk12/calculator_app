@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class IsCalculateCubit extends Cubit<bool> {
-  IsCalculateCubit() : super(false);
+class IsCalculatedCubit extends Cubit<bool> {
+  IsCalculatedCubit() : super(false);
 
   void setIsCalculated(bool isCalculated) {
     emit(isCalculated);
